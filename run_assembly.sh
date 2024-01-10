@@ -48,4 +48,8 @@ spades.py --pe1-1 forward.fq.paired.fq --pe1-2 reverse.fq.paired.fq --pe1-s unpa
 
 seqkit seq spades_folder/scaffolds.fasta -m 1000 -g > contigs.fasta
 seqtk rename contigs.fasta contig-${string}_ > contigs_${string}.fa
-rm contigs.fasta
+
+
+cat forward.fq.paired.fq reverse.fq.paired.fq  unpaired.fq | seqtk seq -a  | cut -d ' ' -f 1  >  tmp ; seqtk rename tmp ${string}_ > reads_${string}.fa
+
+rm contigs.fasta forward.fq.paired.fq reverse.fq.paired.fq unpaired.fq tmp
